@@ -1,0 +1,98 @@
+<div class="d-flex">
+  <div class="col-9">
+    <form [formGroup]="filterForm" (ngSubmit)="applyFilter()">
+      <input type="number" formControlName="pageNumber" placeholder="Page Number" hidden>
+      <input type="number" formControlName="pageSize" placeholder="Page Size" hidden>
+      <div class="d-flex">
+        <div class="p-3">
+          <input type="text" class="form-control" formControlName="filterFirst" placeholder="First Name" aria-label="First Name">
+        </div>
+        <div class="p-3">
+          <input type="text" class="form-control" formControlName="filterLast" placeholder="Last Name" aria-label="Last Name">
+        </div>
+        <div class="p-3">
+          <input type="text" class="form-control" formControlName="filterCity" placeholder="City" aria-label="City">
+        </div>
+
+        <div class="p-3" style="float: right;">
+          <button class="btn btn-default" type="submit">Apply Filter</button>
+        </div>
+
+      </div>
+       <div class="d-flex">
+        <div class="p-3" style="align-items: center;">
+          <input type="checkbox" formControlName="filterActive" hidden>
+        </div>
+      
+
+      </div>
+      <label>
+      
+      </label>
+      
+    </form>
+
+    <table class="table table-striped shadow-sm rounded-3">
+        <th class="p-3">Name</th>
+        <th class="p-3">Address</th>
+        <th class="p-3">Status</th>
+        <th class="p-3"></th>
+        <tbody>
+            <tr *ngFor="let item of data">
+             <td>{{ item.firstName }} {{ item.lastName }}</td>
+             <td>{{ item.city }}</td>
+             <td>{{ item.status }}</td>
+             <td>
+                <button type="button" class="btn btn-default btn-sm" 
+                (click)="deletePatient(item.id)">
+                  <span class="glyphicon glyphicon-trash"></span>  
+                </button>
+                <button type="button" class="btn btn-default btn-sm" (click)="editPatient(item)">
+                  <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+             </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-3 p-3">
+<form [formGroup]="addpatientForm">
+  <div class="mb-3">
+    <label for="firstname" class="form-label">First Name</label>
+    <input formControlName="firstname" type="text" class="form-control input_text" name="firstname" maxlength="100" > 
+
+        <label for="lastname" class="form-label">Last Name</label>
+    <input formControlName="lastname" type="text" class="form-control input_text" name="lastname" maxlength="100" > 
+
+        <label for="city" class="form-label">City</label>
+    <input formControlName="city" type="text" class="form-control input_text" name="city" maxlength="100" > 
+
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="submitAddPatient()">Submit</button>
+</form>
+</div>
+
+
+</div>
+
+
+
+<!-- Edit Patient Modal -->
+<!-- <div class="modal fade" id="editPatientModal" tabindex="-1" aria-labelledby="editPatientModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPatientModalLabel">Edit Patient</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editPatientForm">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="submitEditPatient()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
